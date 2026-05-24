@@ -1,0 +1,255 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BASE */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #070032;
+  color: #ffffff;
+  text-align: center;
+}
+
+header {
+  position: relative;
+  padding: 40px 20px;
+  overflow: hidden;
+
+    /* Fundo com duas imagens */
+  background-image: url("assets/images/Nuvem_centro.png"), url("assets/images/Estrelas_azuis.png");
+  background-size: cover, 120px;
+  background-repeat: no-repeat, repeat;
+  background-position: bottom, top;
+}
+
+
+#titulo {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+/* BOTÕES TOPO */
+#botopo {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+#botopo button {
+  background: #8b0000;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#botopo button:hover {
+  background: #a50000;
+  transform: scale(1.05);
+}
+
+/* TEXTOS */
+.subtitulo {
+  margin: 60px 0 20px;
+  font-size: 28px;
+}
+
+.paum {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* CONFISSÕES */
+.caixa-confissões {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.caixaum, .caixões, .caixeis {
+  background: #5a4a00;
+  width: 280px;
+  padding: 25px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.caixaum:hover,
+.caixões:hover,
+.caixeis:hover {
+  transform: translateY(-10px);
+}
+
+/* TÍTULO DAS CAIXAS */
+.confium, .confiôes, .confieis {
+  background: #8b0000;
+  padding: 12px;
+  border-radius: 20px 20px 0 0;
+  margin: -25px -25px 15px -25px;
+  color: #ffd966;
+}
+
+/* TEXTO */
+blockquote p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* SLIDER */
+.mentes-sabias {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slides-wrapper {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide-item {
+  min-width: 100%;
+  padding: 30px;
+  background: #5a4a00;
+  border-radius: 20px;
+}
+
+/* CITAÇÃO */
+.slide-item blockquote {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.slide-item cite {
+  color: #ffd966;
+}
+
+/* NAVEGAÇÃO */
+.navegacao-citacoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0 60px;
+}
+
+.btn-nav {
+  background: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dots-container {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  border: none;
+}
+
+.dot.active {
+  background: red;
+}
+
+/* FORM */
+#perguntas-iniciais {
+  padding: 40px;
+}
+
+form textarea {
+  width: 60%;
+  height: 80px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  margin: 10px 0 30px;
+  resize: none;
+}
+
+/* BOTÃO */
+form button {
+  background: #8b0000;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background: #a50000;
+}
+
+/* COMPARTILHAR */
+.paragrafo-compartilhar {
+  margin: 40px 0;
+}
+
+.compartilhar {
+  background: #8b0000;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 420px;
+  padding: 30px;
+  background: #050022;
+  
+}
+
+#mensagem-final {
+  margin-bottom: 10px;
+}
+
+/* ANIMAÇÃO SUAVE */
+.caixaum, .caixões, .caixeis {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 1s forwards;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .caixa-confissões {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form textarea {
+    width: 90%;
+  }
+
+  .mentes-sabias {
+    width: 95%;
+  }
+}

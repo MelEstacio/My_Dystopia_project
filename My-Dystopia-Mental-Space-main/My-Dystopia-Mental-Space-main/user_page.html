@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Esta é uma seção dedicada à página do usuário, onde ele pode criar seu acesso, acessar suas confissões, interagir com a comunidade e muito mais. Este ambiente é seguro para que os usuários possam compartilhar suas experiências sem preocupações.">
+    <link rel= "stylesheet" href = "style.css">
+    <link rel="icon" href="assets\images/star_icon.png" type="image/x-icon">
+    <title>Minha Página</title>
+</head>
+<body>
+    <div id="botopo"> <!--botões do topo-->
+            <a href="pag-inicial.html"><button class="home">Início</button></a>
+            <a href="minhas-confi.html"><button class="minhas-confi">Minhas Confissões</button></a>
+            <a href="comunidade.html"><button class="Comun">Comunidade</button></a>
+            <a href="disque-ajuda.html"><button class="Dis">Disque Ajuda</button></a>
+            <a href="user_page.html"><button class="User"><img src="assets\images/user_icon.svg" alt=""></button></a>
+        </div>
+    <section class="user_page_inicio"> 
+        <h1>Bem-vindo à sua página pessoal no My Dystopia!</h1>
+        <h2 class="usuario_novo"> Crie seu acesso para guardar e começar a compartilhar suas confissões!</h2>
+        <div id="create_login">
+            <button class="informacoes_novo_usuario">
+                Nome de Usuário: <input type="text" name="username" placeholder="Escolha um nome de usuário">
+            </button>
+            <button class="caixa_senha_novo_usuario">
+                Senha: <input type="password" name="password" placeholder="Escolha uma senha"><span class="lnr lnr-eye"></span> 
+            </button>
+            <p class="senha_dica">Dica: Use uma senha forte para proteger sua conta!</p>
+            <p class="senha_ajuda">A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.</p>
+            <h2 class="pergunta_seguranca_user">Escolha uma pergunta de segurança para ajudar a proteger sua conta:</h2>
+            <select name="pergunta_seguranca_inicio" class="pergunta_seguranca_select">
+                <option value="">Selecione uma pergunta de segurança</option>
+                <option value="pet">Qual é o nome do seu primeiro animal de estimação?</option>
+                <option value="cidade">Qual é o nome da sua cidade natal?</option>
+                <option value="amigo">Qual é o nome do seu melhor amigo de infância?</option>
+                <option value="filme">Qual é o nome do seu filme favorito?</option>
+                <option value="livro">Qual é o nome do seu livro favorito?</option>
+                <option value="professor">Qual é o nome do seu professor favorito?</option>
+                <option value="esporte">Qual é o nome do seu esporte favorito?</option>
+                <option value="cantor">Qual é o nome do seu cantor ou banda favorita?</option>
+                <option value="prato">Qual é o nome do seu prato favorito?</option>
+            </select>
+            <input type="text" name="resposta_pergunta_seguranca" class="input_resposta_seguranca"placeholder="Digite sua resposta aqui"/>
+            <button class="guardar_acesso_novo_usuario">Guardar Acesso</button>
+        </div> 
+        <h2 class="usuario_existente"> Faça login no seu perfil!</h2>
+        <div class="fazer_login">
+            <button class="informacoes_usuario">
+                Nome de Usuário: <input type="text" name="username" placeholder="Digite seu nome de usuário">
+            </button>
+            <button class="caixa_senha">
+                Senha: <input type="password" name="password" placeholder="Digite sua senha">
+            </button>
+            <a href="reset_password.html" class="link_reset_senha">Esqueceu sua senha?</a>
+            <button class="guardar_acesso">
+                Guardar Acesso: <input type="checkbox" name="guardar_user">
+            </button>
+            <button class="entrar">Entrar</button>
+        </div>
+        <button class="sair">Sair</button>
+        <button class="deletar_conta">Deletar Conta</button>
+        <a href="pag-inicial.html">
+             <button class="return">Retornar À Página Inicial</button>
+        </a>
+    </section>
+</body>
+</html>

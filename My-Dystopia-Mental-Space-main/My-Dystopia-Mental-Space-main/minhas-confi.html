@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Um espaço seguro dentro do My Dystopia para você registrar suas confissões e pensamentos de forma anônima.">
+    <link rel="icon" href="assets\images/star_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Minhas Confissões - My Dystopia</title>  
+</head>
+<body>
+    <header>
+        <h1 id="titulo">My Dystopia</h1>
+            <div id="botopo"> <!--botões do topo-->
+                <a href="pag-inicial.html"><button class="home">Início</button></a>
+                <a href="minhas-confi.html"><button class="minhas-confi">Minhas Confissões</button></a>
+                <a href="comunidade.html"><button class="Comun">Comunidade</button></a>
+                <a href="disque-ajuda.html"><button class="Dis">Disque Ajuda</button></a>
+                 <a href="user_page.html"><button class="User"><img src="assets\images/user_icon.svg" alt=""></button></a>
+            </div>
+        </header>
+    <main>
+        <section id="confissoes-do-usuario">
+            <h1>Minhas Confissões</h1>
+            <blockquote>
+            <p>"Tornar consciente um fato inconsciente tem efeito curativo"</p>
+            <cite>— Sigmund Freud</cite>
+            </blockquote>
+            <form id="confissao-form">
+                <textarea id="confissao-input" placeholder="A cura também vem pela fala!" required>
+                </textarea>
+               <button type="submit">Salvar Confissão</button></a>
+            </form>
+            <div id="lista-confissoes">
+                <!-- As confissões do usuário serão exibidas aqui -->
+                 <p id="confissao-usuario"></p>
+                 <p id="salva"></p>
+            </div>
+            <button type="submit" id="apagar-confissao">Apagar Confissão</button>
+            <div class="caixa_confissoes_anteriores">
+                <h2>Confissões Anteriores</h2>
+                 <!-- As confissões anteriores do usuário podem ser listadas aqui -->
+                  <button class="abrir_confissoes_anteriores">ABRIR</button>
+                  <list id="confissoes_anteriores">
+                    <ul>
+                      <li>Me sinto muito sozinho nas sextas-feiras.</li>
+                      <li>Às vezes, sinto falta de conexão com os outros.</li>
+                      <li>Me sinto sozinho em meio à muitas pessoas.</li>
+                    </ul>
+                  </list>
+            </div>
+            <div class="respostas_anteriores">
+                <h2>Respostas Anteriores</h2>
+                 <!-- As respostas anteriores do usuário podem ser listadas aqui -->
+                  <button class="abrir_respostas_anteriores">ABRIR</button>
+                  <list id="respostas-anteriores">
+                    <ul>
+                      <li>Muito distante.</li>
+                      <li>Sempre que eu olho para o céu, eu me sinto assim.</li>
+                      <li>Bolo de limão é o meu favorito.</li>
+                    </ul>
+                  </list>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Função para salvar a confissão no localStorage
+        const form = document.getElementById('confissao-form');
+        const listaConfissoes = document.getElementById('lista-confissoes');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const confissao = document.getElementById('confissao-input').value.trim();
+            localStorage.setItem('confissao', confissao);
+            document.getElementById('confissao-input').value = '';
+            if (confissao) {
+                document.getElementById('salva').textContent = 'Confissão salva com sucesso!';
+                document.getElementById('confissao-usuario').textContent = confissao;
+            } else { document.getElementById('salva').textContent = 'por favor, se confesse!'; }
+
+        }); 
+
+        // Funçao para apagar a confissão do localStorage
+        const apagar_confissao = document.getElementById('apagar-confissao');
+        apagar_confissao.addEventListener("click", function(){
+            localStorage.removeItem('confissao');
+            document.getElementById('confissao-usuario').textContent = '';
+            document.getElementById('salva').textContent = 'Confissão apagada com sucesso!';
+        })
+
+    </script>
+        <footer>
+            <h4 id="mensagem-final">Você foi criado para algo maior.</h4>
+            <h5 id="contato">Fale conosco!</h5>
+            <p>Email: contato@mydystopia.com</p> 
+            <p>&copy; 2026 My Dystopia. Todos os direitos reservados.</p>
+        </footer>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Dystopia</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="My Dystopia é um espaço onde você pode compartilhar suas confissões, pensamentos e sentimentos mais profundos. Aqui, você encontrará um ambiente acolhedor e seguro para expressar suas emoções sem julgamentos. Junte-se à nossa comunidade e descubra que você não está sozinho em suas experiências.">
+        <link rel= "stylesheet" href = "style.css">
+         <link rel="icon" href="assets\images/star_icon.png" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+        <h1 id="titulo">My Dystopia</h1>
+            <div id="botopo"> <!--botões do topo-->
+                <a href="pag-inicial.html"><button class="home">Início</button></a>
+                <a href="minhas-confi.html"><button class="minhas-confi">Minhas Confissões</button></a>
+                <a href="comunidade.html"><button class="Comun">Comunidade</button></a>
+                <a href="disque-ajuda.html"><button class="Dis">Disque Ajuda</button></a>
+                <a href="user_page.html"><button class="User"><img src="assets\images/user_icon.svg" alt=""></button></a>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h2 class="subtitulo">Seus pensamentos cabem aqui.</h2>
+                <p class="paum">O <strong>My Dystopia</strong>  foi criado para ser um espaço seguro <br> e acolhedor onde você pode compartilhar suas confissões, <br> pensamentos e sentimentos mais profundos sem julgamentos.</p> <!--Primeiro Parágrafo-->
+            </section>
+            <section> <!--Aqui ficará a seção de confissões, onde as pessoas poderão ler as confissões de outras pessoas.-->
+                <h2 class="subtitulo">Confissões Para Se Conectar</h2>
+                <div class="caixa-confissões"> 
+                    <article class="caixaum">
+                        <h3 class="confium">Poeira Galáctica</h3> <!--Aqui ficará um exemplo de confissão-->
+                        <blockquote>
+                            <p><em>"Sinto um vazio do tamanho <br>do mundo.."</em></p>
+                        </blockquote>
+                    </article>
+                    <article class="caixões">
+                        <h3 class="confiôes"> Fada Estelar</h3><!--Aqui ficará um exemplo de confissão-->
+                        <blockquote>
+                        <p><em>“A minha dor me consome,<br> mas eu não quero desistir."</em></p>
+                        </blockquote>
+                    </article>
+                    <article class="caixeis">
+                        <h3 class="confieis">Vento Nebuloso</h3> <!--Aqui ficará um exemplo de confissão-->
+                        <blockquote>
+                        <p><em>"Às vezes, sinto que estou me <br>afogando em um mar<br> de pensamentos."</em></p>
+                        </blockquote>
+                    </article>
+                </div><!---Nessa div, todas as caixas ficarão lado a lado no centro da página-->
+            <section id="citações-inspiradoras">
+                <h3>Citações de Mentes Sábias</h3>
+                <div class="mentes-sabias"> 
+                    <div class="slides-wrapper">
+                        <div class="slide-item">
+                            <blockquote id="citacao-um">"Em meio ao inverno, eu encontrei, dentro de mim, um verão invencível."
+                            </blockquote>
+                            <cite>Albert Camus</cite>
+                        </div>
+                        <div class="slide-item">
+                            <blockquote id="citacao-dois">"A vida é a arte do encontro, embora haja tanto desencontro pela vida."
+                            </blockquote>
+                            <cite>Vinicius de Moraes</cite>
+                        </div>
+                        <div class="slide-item">
+                            <blockquote id="citacao-tres">"A dor é inevitável, o sofrimento é opcional."
+                            </blockquote>
+                            <cite>Bertrand Russell</cite>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="navegacao-citacoes">
+                <button class="btn-nav voltar" aria-label="Citação anterior">⬅️</button> <!--Esses botões devem permitir que o usuário navegue entre as citações. O botão "voltar" leva para a citação anterior, e o botão "seguir" leva para a próxima citação. Mas, se ele clicar em alguma das bolinhas, ele pode escolher manualmente para qual citação ele quer voltar. Gostaria que tivesse um timeout para as citações passarem na tela. -->
+                <div class="dots-container">
+                    <button class="dot active" aria-label="Ir para citação 1"></button>
+                    <button class="dot" aria-label="Ir para citação 2"></button>
+                    <button class="dot" aria-label="Ir para citação 3"></button>
+                </div>
+                <button class="btn-nav seguir" aria-label="Próxima citação">➡️</button>
+            </div>
+        <section id="perguntas-iniciais"> <!--Aqui ficará a seção de perguntas iniciais-->
+            <form id="perguntas-mapeamento"> <!--Aqui o usuário responde as perguntas para mapear melhor a sua situação.-->
+            <h3 class="Primeira-perg">Qual o tamanho da sua dor em Km?</h3> <!--Ao fundo, quero que apareça suavemente algum exemplo de resposta.-->
+                <div class="resposta1">
+                    <label for="resposta-km"></label>
+                    <textarea id="resposta-km" placeholder="Anos-luz de distância." required></textarea>
+                    <div class="saved-answer" id="salvar-km"></div>
+                </div>
+            <h3 class="Segunda-perg"> Qual a cor da sua tristeza?</h3>
+                <div class="resposta2">
+                    <label for="resposta-cor"></label>
+                    <textarea id="resposta-cor" placeholder="Um cinza profundo." required></textarea>
+                    <div class="saved-answer" id="salvar-cor"></div>
+                </div>
+             <h3 class="Terceira-perg"> Se a sua dor fosse um som, qual seria?</h3>
+                <div class="resposta3">
+                    <label for="resposta-som"></label>
+                    <textarea id="resposta-som" placeholder="O silêncio ensurdecedor." required></textarea>
+                    <div class="saved-answer" id="salvar-som"></div>
+                </div>
+             <h3 class="Quarta-perg"> E se você pudesse imaginar sua vida sem esses problemas agora, ela ainda seria ruim?</h3>
+                <div class="resposta4">
+                    <label for="resposta-problem"></label>
+                    <textarea id="resposta-problem" placeholder="Talvez não fosse tão ruim assim..." required></textarea>
+                    <div class="saved-answer" id="salvar-problem"></div>
+                </div>
+                <div id="guardando-respostas-inicio"></div>
+                <button type="submit">Guardar minhas respostas</button> <!--Esse botão, quando clicado, deve salvar as respostas do usuário em um banco de dados ou local storage para que ele possa acessá-las posteriormente.Apresentar alguma mensagem de confirmação.-->
+            </form>
+            <div id="mensagem-confirmacao" style="display: none;">
+                <p>Suas palavras foram guardadas com cuidado. Respire fundo.</p>
+            </div> <!--Aqui aparecerá a mensagem de confirmação de que as respostas foram salvas.-->
+        </section>
+        <section id="compartilhar-confissao"> 
+            <p class="paragrafo-compartilhar">Junte-se à nossa comunidade e descubra que você não está sozinho <br>em suas experiências. Compartilhe suas confissões e encontre apoio <br> entre aqueles que entendem o que você está passando.</p>
+            <button class="compartilhar">Compartilhar Minha Confissão e Conectar-me Com Um Amigo</button> <!--Aqui o usuário clica para compartilhar suas respostas. Deve levar para a página "comunidade", mas não implementamos ela ainda, porque não foi pedido para essa etapa do projeto. -->
+        </section>
+        </main>
+        <script>
+            //add confissões do usuário:
+            
+            const form = document.getElementById('perguntas-mapeamento');
+            const confirmacao = document.getElementById('mensagem-confirmacao');
+
+
+            //Pega o que o usuário digitou nos inputs e guarda em variáveis
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const km = document.getElementById('resposta-km').value;
+                const cor = document.getElementById('resposta-cor').value;
+                const som = document.getElementById('resposta-som').value;
+                const problem = document.getElementById('resposta-problem').value;
+
+
+            //Salva os dados no navegador usando localStorage
+                localStorage.setItem('resposta-km', km);
+                localStorage.setItem('resposta-cor', cor);
+                localStorage.setItem('resposta-som', som);
+                localStorage.setItem('resposta-problem', problem);
+            
+            
+            //Mostra os dados na tela
+                document.getElementById('salvar-km').textContent = km;
+                document.getElementById('salvar-cor').textContent = cor;
+                document.getElementById('salvar-som').textContent = som;
+                document.getElementById('salvar-problem').textContent = problem;
+
+
+            //Limpa os campos de resposta
+                document.getElementById('resposta-km').value = '';
+                document.getElementById('resposta-cor').value = '';
+                document.getElementById('resposta-som').value = '';
+                document.getElementById('resposta-problem').value = '';
+
+
+            //Exibe a mensagem de confirmação
+                confirmacao.style.display = 'block';
+
+                setTimeout(() => {
+                    confirmacao.style.display = 'none';
+                }, 3000);
+            });
+
+            
+        //Carrega as respostas salvas quando a página é carregada
+            window.addEventListener('load', function() {
+                const km = localStorage.getItem('resposta-km');
+                const cor = localStorage.getItem('resposta-cor');
+                const som = localStorage.getItem('resposta-som');
+                const problem = localStorage.getItem('resposta-problem');
+
+                if (km) document.getElementById('salvar-km').textContent = km;
+                if (cor) document.getElementById('salvar-cor').textContent = cor;
+                if (som) document.getElementById('salvar-som').textContent = som;
+                if (problem) document.getElementById('salvar-problem').textContent = problem;
+            });
+            
+        </script>
+        <footer>
+            <h4 id="mensagem-final">Você foi criado para algo maior.</h4>
+            <h5 id="contato">Fale conosco!</h5>
+            <p>Email: contato@mydystopia.com</p> 
+            <p>&copy; 2026 My Dystopia. Todos os direitos reservados.</p>
+        </footer>
+    </body>
+</html>
