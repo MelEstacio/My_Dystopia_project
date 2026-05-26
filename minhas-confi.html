@@ -11,8 +11,7 @@
 <body>
     <header>
         <h1 id="titulo">My Dystopia</h1>
-        <nav id="botopo"> <!--botões do topo-->
-            <a href="pag-inicial.html"><button class="home">Início</button></a>
+        <nav id="botopo"> <a href="pag-inicial.html"><button class="home">Início</button></a>
             <a href="minhas-confi.html"><button class="minhas-confi">Minhas Confissões</button></a>
             <a href="comunidade.html"><button class="Comun">Comunidade</button></a>
             <a href="disque-ajuda.html"><button class="Dis">Disque Ajuda</button></a>
@@ -26,30 +25,30 @@
                 <p>"Tornar consciente um fato inconsciente tem efeito curativo"</p>
                 <cite>— Sigmund Freud</cite>
             </blockquote>
-            <form action="minhas-confi.html" method="post" id="confissao-form">
+            
+            <form action="salvar_confissao.php" method="post" id="confissao-form">
                 <textarea id="confissao-input" name="confissao" placeholder="A cura também vem pela fala!" required></textarea>
                 <button type="submit">Salvar Confissão</button>
                 <div id="lista-confissoes">
-                    <!-- As confissões ficam salvas no navegador e não são exibidas nesta tela. -->
                     <p id="salva"></p>
                 </div>
                 <button type="button" id="apagar-confissao">Apagar Confissão</button>
             </form>
+            
             <div class="caixa_confissoes_anteriores">
                 <h2>Confissões Anteriores</h2>
-                <!-- As confissões anteriores do usuário podem ser listadas aqui -->
-                <button class="abrir_confissoes_anteriores">Abrir</button>
-                <ul id="confissoes_anteriores">
+                <button class="abrir_confissoes_anteriores" id="btn-abrir-conf">Abrir</button>
+                <ul id="confissoes_anteriores" style="display: none;">
                     <li>Me sinto muito sozinho nas sextas-feiras.</li>
                     <li>Às vezes, sinto falta de conexão com os outros.</li>
                     <li>Me sinto sozinho em meio à muitas pessoas.</li>
                 </ul>
             </div>
+            
             <div class="respostas_anteriores">
                 <h2>Respostas Anteriores</h2>
-                <!-- As respostas anteriores do usuário podem ser listadas aqui -->
-                <button class="abrir_respostas_anteriores">Abrir</button>
-                <ul id="respostas-anteriores">
+                <button class="abrir_respostas_anteriores" id="btn-abrir-resp">Abrir</button>
+                <ul id="respostas-anteriores" style="display: none;">
                     <li>Muito distante.</li>
                     <li>Sempre que eu olho para o céu, eu me sinto assim.</li>
                     <li>Bolo de limão é o meu favorito.</li>
@@ -57,9 +56,8 @@
             </div>
         </section>
     </main>
+
     <script>
-        // O formulário não envia mais para um arquivo PHP inexistente.
-        // Ele salva a confissão no localStorage, limpa o campo e mostra apenas uma mensagem de status.
         const form = document.getElementById('confissao-form');
         const mensagemSalva = document.getElementById('salva');
 
@@ -67,22 +65,55 @@
             event.preventDefault();
             const confissao = document.getElementById('confissao-input').value.trim();
 
-            if (confissao) {
-                localStorage.setItem('confissao', confissao);
-                document.getElementById('confissao-input').value = '';
-                mensagemSalva.textContent = 'Confissão salva com sucesso!';
+            if (!confissao) {
+                mensagemSalva.textContent = 'Por favor, escreva uma confissão.';
                 return;
             }
 
-            mensagemSalva.textContent = 'Por favor, escreva uma confissão.';
+            // Envio assíncrono para o PHP
+            const formData = new FormData(form);
+            fetch('salvar_confissao.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => console.log('PHP Confissão:', data))
+            .catch(error => console.error('Erro no PHP:', error));
+
+            // Lógica local mantida
+            localStorage.setItem('confissao', confissao);
+            document.getElementById('confissao-input').value = '';
+            mensagemSalva.textContent = 'Confissão salva com sucesso!';
         });
 
-        // Remove a confissão salva do navegador sem exibir o texto da confissão na página.
         const apagar_confissao = document.getElementById('apagar-confissao');
         apagar_confissao.addEventListener("click", function(){
             localStorage.removeItem('confissao');
             mensagemSalva.textContent = 'Confissão apagada com sucesso!';
-        })
+        });
+
+        // Lógica dos botões Abrir/Fechar das listas anteriores
+        document.getElementById('btn-abrir-conf').addEventListener('click', function() {
+            const list = document.getElementById('confissoes_anteriores');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                this.textContent = 'Fechar';
+            } else {
+                list.style.display = 'none';
+                this.textContent = 'Abrir';
+            }
+        });
+
+        document.getElementById('btn-abrir-resp').addEventListener('click', function() {
+            const list = document.getElementById('respostas-anteriores');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                this.textContent = 'Fechar';
+            } else {
+                list.style.display = 'none';
+                this.textContent = 'Abrir';
+            }
+        });
     </script>
     <footer>
         <h4 id="mensagem-final">Você foi criado para algo maior.</h4>

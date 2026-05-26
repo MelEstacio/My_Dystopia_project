@@ -120,47 +120,59 @@
             const form = document.getElementById('perguntas-mapeamento');
             const confirmacao = document.getElementById('mensagem-confirmacao');
 
-
-            //Pega o que o usuário digitou nos inputs e guarda em variáveis
+            // Pega o que o usuário digitou nos inputs e guarda em variáveis
             form.addEventListener('submit', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Continua segurando o recarregamento da página
+
                 const km = document.getElementById('resposta-km').value;
                 const cor = document.getElementById('resposta-cor').value;
                 const som = document.getElementById('resposta-som').value;
                 const problem = document.getElementById('resposta-problem').value;
 
-
-            //Salva os dados no navegador usando localStorage
+                // 1. Salva os dados no navegador usando localStorage (Mantido!)
                 localStorage.setItem('resposta-km', km);
                 localStorage.setItem('resposta-cor', cor);
                 localStorage.setItem('resposta-som', som);
                 localStorage.setItem('resposta-problem', problem);
-            
-            
-            //Mostra os dados na tela
+
+                // 2. DISPARO PARA O PHP (A mágica que faltava)
+                // Criamos um objeto com os dados do formulário atual
+                const formData = new FormData(form);
+
+                // Enviamos de forma assíncrona para o seu respostas_user.php
+                fetch('respostas_user.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Resposta do PHP:', data); // Útil para debugar no console do navegador F12
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar para o PHP:', error);
+                });
+
+                // 3. Mostra os dados na tela (Mantido!)
                 document.getElementById('salvar-km').textContent = km;
                 document.getElementById('salvar-cor').textContent = cor;
                 document.getElementById('salvar-som').textContent = som;
                 document.getElementById('salvar-problem').textContent = problem;
 
-
-            //Limpa os campos de resposta
+                // 4. Limpa os campos de resposta (Mantido!)
                 document.getElementById('resposta-km').value = '';
                 document.getElementById('resposta-cor').value = '';
                 document.getElementById('resposta-som').value = '';
                 document.getElementById('resposta-problem').value = '';
 
-
-            //Exibe a mensagem de confirmação
-                confirmacao.style.display = 'block';
-
-                setTimeout(() => {
-                    confirmacao.style.display = 'none';
-                }, 3000);
+                // 5. Exibe a mensagem de confirmação (Mantido!)
+                if (confirmacao) {
+                    confirmacao.style.display = 'block';
+                    setTimeout(() => {
+                        confirmacao.style.display = 'none';
+                    }, 3000);
+                }
             });
-
-            
-        //Carrega as respostas salvas quando a página é carregada
+            // Carrega as respostas salvas quando a página é carregada (Mantido!)
             window.addEventListener('load', function() {
                 const km = localStorage.getItem('resposta-km');
                 const cor = localStorage.getItem('resposta-cor');

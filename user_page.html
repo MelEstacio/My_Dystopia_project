@@ -19,10 +19,12 @@
     </nav>
     <section class="user_page_inicio">
         <h1>Bem-vindo à sua página pessoal no My Dystopia!</h1>
-        <!-- Cadastro -->
+        
         <h2 class="usuario_novo">Crie seu acesso para guardar e começar a compartilhar suas confissões!</h2>
         <div id="create_login">
-            <form id="form_create_user" action="user_page.html" method="post">
+            <form id="form_create_user" action="processar_usuario.php" method="post">
+                <input type="hidden" name="acao" value="cadastro">
+
                 <label for="new_username">Nome de Usuário</label>
                 <input type="text" id="new_username" name="username" placeholder="Escolha um nome de usuário" required>
                 <label for="new_password">Senha</label>
@@ -48,10 +50,12 @@
                 <button type="submit" class="guardar_acesso_novo_usuario">Guardar Acesso</button>
             </form>
         </div>
-        <!-- Login -->
+        
         <h2 class="usuario_existente">Faça login no seu perfil!</h2>
         <div class="fazer_login">
-            <form id="form_login_user" action="user_page.html" method="post">
+            <form id="form_login_user" action="processar_usuario.php" method="post">
+                <input type="hidden" name="acao" value="login">
+
                 <label for="login_username">Nome de Usuário</label>
                 <input type="text" id="login_username" name="username" placeholder="Digite seu nome de usuário" required>
                 <label for="login_password">Senha</label>
@@ -70,28 +74,23 @@
             <button class="return">Retornar À Página Inicial</button>
         </a>
     </section>
+
     <script>
-        // Cadastro e login foram tratados no JavaScript para não depender de rotas PHP inexistentes.
-        // Os dados ficam salvos no localStorage do navegador enquanto não houver backend.
-        // Aqui pegamos os formulários, o campo de mensagem e os botões que serão controlados pelo JS.
         const createUserForm = document.getElementById('form_create_user');
         const loginUserForm = document.getElementById('form_login_user');
         const userMessage = document.getElementById('user-message');
         const logoutButton = document.querySelector('.sair');
         const deleteAccountButton = document.querySelector('.deletar_conta');
 
-        // Mostra mensagens de retorno para o usuário, como erro de login ou cadastro realizado.
         function showMessage(message) {
             userMessage.textContent = message;
         }
 
-        // Busca no localStorage o usuário cadastrado e transforma o texto salvo em objeto JavaScript.
         function getStoredUser() {
             return JSON.parse(localStorage.getItem('myDystopiaUser')) || null;
         }
 
-        // Quando o usuário cria uma conta, impedimos o envio do formulário para outra página.
-        // Depois validamos os campos e salvamos os dados no localStorage.
+        // ---- CADASTRO VIA FETCH ----
         createUserForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -105,19 +104,26 @@
                 return;
             }
 
+            // Captura automática dos dados + campos ocultos do form atual
+            const formData = new FormData(createUserForm);
+
+            fetch('processar_usuario.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => console.log('PHP Cadastro:', data))
+            .catch(error => console.error('Erro no cadastro PHP:', error));
+
             localStorage.setItem('myDystopiaUser', JSON.stringify({
-                username,
-                password,
-                securityQuestion,
-                securityAnswer
+                username, password, securityQuestion, securityAnswer
             }));
             localStorage.setItem('myDystopiaLoggedUser', username);
             createUserForm.reset();
             showMessage('Acesso criado com sucesso. Você já está conectado.');
         });
 
-        // No login, o JS compara o nome e a senha digitados com os dados salvos no cadastro.
-        // Se estiver tudo certo, salva o nome do usuário como usuário conectado.
+        // ---- LOGIN VIA FETCH ----
         loginUserForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -130,25 +136,33 @@
                 return;
             }
 
+            // Captura automática dos dados + campos ocultos do form atual
+            const formData = new FormData(loginUserForm);
+
+            fetch('processar_usuario.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => console.log('PHP Login:', data))
+            .catch(error => console.error('Erro no login PHP:', error));
+
             localStorage.setItem('myDystopiaLoggedUser', username);
             loginUserForm.reset();
             showMessage('Login realizado com sucesso.');
         });
 
-        // Remove apenas a informação de usuário conectado, mantendo a conta cadastrada.
         logoutButton.addEventListener('click', function() {
             localStorage.removeItem('myDystopiaLoggedUser');
             showMessage('Você saiu da sua conta.');
         });
 
-        // Remove a conta cadastrada e também qualquer sessão ativa no navegador.
         deleteAccountButton.addEventListener('click', function() {
             localStorage.removeItem('myDystopiaUser');
             localStorage.removeItem('myDystopiaLoggedUser');
             showMessage('Conta deletada com sucesso.');
         });
 
-        // Ao abrir a página, verifica se já existe um usuário conectado e mostra essa informação.
         window.addEventListener('load', function() {
             const loggedUser = localStorage.getItem('myDystopiaLoggedUser');
             if (loggedUser) {
